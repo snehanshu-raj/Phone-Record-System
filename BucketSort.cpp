@@ -5,9 +5,12 @@
 #define ll unsigned long long
 
 using namespace std;
+namespace fs = std::filesystem;
 
 int main()
 {
+	fs::create_directory("bucket_records");
+
 	ofstream read[1000];
 	char buffer[33];
 
@@ -23,7 +26,9 @@ int main()
 		
 		ll remainder = atoll(temp_num) % 1000;
 		
-		read[remainder].open(ltoa(remainder, buffer, 10), std::ios::app);
+		string filename = "bucket_records/" + to_string(remainder);
+		read[remainder].open(filename, std::ios::app);
+		// read[remainder].open(ltoa(remainder, buffer, 10), std::ios::app);
 		
 		read[remainder] << temp_s << " " << temp_num << endl;
 		cout << "done" << endl;	

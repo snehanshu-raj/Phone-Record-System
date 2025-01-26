@@ -3,8 +3,10 @@
 #include<cstring>
 #include<time.h>
 using namespace std;
+namespace fs = std::filesystem;
 
 #define ll unsigned long long
+
 
 int main()
 {
@@ -22,9 +24,14 @@ int main()
 		fscanf(tread, "%s", num);
 		
 		ll remainder = atoll(num) % 1000;
-		
-		FILE * dread;
-		dread = fopen(ltoa(remainder, buffer, 10), "r");
+		string filepath = "bucket_records/" + to_string(remainder);
+
+		// FILE * dread;
+
+		// sprintf(buffer, "%llu", remainder);
+		// dread = fopen(buffer, "r");
+
+		FILE *dread = fopen(filepath.c_str(), "r");
 		
 		clock_t start, end;
 		start = clock();
